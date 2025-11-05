@@ -1,0 +1,12 @@
+# Python bytecode
+    __pycache__/
+    *.pyc
+
+# Docs
+    **/backupmain.py
+    **/backup.txt
+    **/_analise.txt
+
+# Results
+    *.json
+    *.csv

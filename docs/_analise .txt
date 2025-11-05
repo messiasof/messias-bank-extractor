@@ -1,0 +1,30 @@
+### Quando for no Santander ao receber do payeer IBM ai eu adiciono ao renda + rule automatizada
+
+### Eu tive que adicionar uma conta pra sempre receber algo (transferência) que teria que ser empty
+### Se precisar vou criar uma conta pra 
+
+---
+
+# forma mais inteligente de aplicar esses descriptions, tipo se amount for negativa direcao é "enviada" e pagador é sempre = 1 apenas mudando o recebedor. E se for positiva o recebedor é sempre = 1 e a direcao é sempre "recebida" mudando apenas o pagador. Mas faz o que você achar melhor. Mas me explique.
+
+se description conter "Transferência Enviada" (não sensitivo), pagador = 1 e direcao = "enviada"
+se description conter "Transferência Recebida" (não sensitivo), recebedor = 1 e direcao = "recebida"
+se description conter "Aplicação RDB" (não sensitivo), pagador = 1, recebedor = 4 e direcao = "enviada"
+se description conter "Resgate RDB" (não sensitivo), pagador = 4, recebedor = 1 e direcao = "recebida"
+se description conter "Recarga de celular" (não sensitivo), pagador = 1 e direcao = "enviada"
+se description conter "Valor adicionado na conta por cartão de crédito" (não sensitivo), recebedor = 1 e direcao = "recebida"
+se description conter "Pagamento de fatura" (não sensitivo), pagador = 1, recebedor = 7 e direcao = "enviada"
+se description conter "Pagamento efetuado" (não sensitivo), pagador = 1 e direcao = "enviada"
+se description conter "Transferência Recebida" (não sensitivo) e no receiver o value for "479.257.678-47", pagador = 6, recebedor = 1 e direcao = "recebida"
+
+category >> categoria
+date >> data (sem o time)
+currencyCode >> moeda
+amount >> quantia
+type >> tipoCompra
+category >> categoria
+
+description >> nota (com espaço antes e depois do "|") # Ex: "Transferência|Edna" vira "Transferência | Edna"
+description >> descricao
+descricao >> type - description(after "|") - operationType
+# Ex: descricao: "Débito - Nome - PIX" (se for algo de "Aplicação RDB" ou "Resgate RDB" (ambos não sensitivos) então somente type - operationType)

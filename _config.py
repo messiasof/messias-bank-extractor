@@ -1,0 +1,6 @@
+## Build: Nu
+ACCOUNTID_NU = "GET FROM PLUGGY API"
+UPDATE_NU = "GET FROM PLUGGY API"
+CLIENT_NU = "GET FROM PLUGGY API"
+SECRET_NU = "GET FROM PLUGGY API"
+WEBHOOK_NU = "OPTIONAL" # I usually use Vercel to control my API endpoints for free 
