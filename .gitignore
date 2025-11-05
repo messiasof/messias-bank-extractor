@@ -1,12 +1,12 @@
 # Python bytecode
-    __pycache__/
-    *.pyc
+__pycache__/
+*.pyc
 
 # Docs
-    **/backupmain.py
-    **/backup.txt
-    **/_analise.txt
+**/backupmain.py
+**/backup.txt
+**/_analise.txt
 
 # Results
-    *.json
-    *.csv
+*.json
+*.csv
