@@ -67,6 +67,33 @@ def updateBanks():
     updateBank_authless("Nubank", CLIENT_NU, SECRET_NU, UPDATE_NU)
     print(LINEBREAK)
     waitFor(WAITFOR)
+def getBalance(client, secret, account):
+    urlAuth = "https://api.pluggy.ai/auth"
+
+    payloadAuth = {
+        "clientId": f"{client}",
+        "clientSecret": f"{secret}"
+    }
+    headersAuth = {
+        "accept": "application/json",
+        "content-type": "application/json"
+    }
+
+    responseAuth = requests.post(urlAuth, json=payloadAuth, headers=headersAuth)
+    dataAuth = responseAuth.json()
+    APIKEY = dataAuth["apiKey"]
+
+    urlBalance = f"https://api.pluggy.ai/accounts/{account}"
+
+    headersBalance = {
+        "accept": "application/json",
+        "X-API-KEY": f"{APIKEY}"
+    }
+
+    responseBalance = requests.get(urlBalance, headers=headersBalance)
+    responseBalance = responseBalance.json()
+    responseBalance = responseBalance["balance"]
+    print(responseBalance)
 # Todas as suas importações continuam iguais aqui
 
 def startJob(bankName, twoLettersBankName, client, secret, accountId):
@@ -356,40 +383,6 @@ def startJob(bankName, twoLettersBankName, client, secret, accountId):
     tratarDados(f"jsonBase_{twoLettersBankName}.json", f"jsonTratado_{twoLettersBankName}.json")
 
 #################### START ####################
-#cleanConsole()
-#updateBanks()
-#startJob("Nubank", "nu", CLIENT_NU, SECRET_NU, ACCOUNTID_NU)
-
-
-urlAuth = "https://api.pluggy.ai/auth"
-
-payloadAuth = {
-    "clientId": f"{CLIENT_NU}",
-    "clientSecret": f"{SECRET_NU}"
-}
-headersAuth = {
-    "accept": "application/json",
-    "content-type": "application/json"
-}
-
-responseAuth = requests.post(urlAuth, json=payloadAuth, headers=headersAuth)
-dataAuth = responseAuth.json()
-APIKEY = dataAuth["apiKey"]
-print(APIKEY)
-
-
-
-
-
-urlBalance = f"https://api.pluggy.ai/accounts/{ACCOUNTID_NU}"
-
-headersBalance = {
-    "accept": "application/json",
-    "X-API-KEY": f"{APIKEY}"
-}
-
-responseBalance = requests.get(urlBalance, headers=headersBalance)
-responseBalance = responseBalance.json()
-responseBalance = responseBalance["balance"]
-print(responseBalance)
+cleanConsole()
+updateBanks()
 startJob("Nubank", "nu", CLIENT_NU, SECRET_NU, ACCOUNTID_NU)
