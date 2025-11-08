@@ -330,7 +330,7 @@ def startJob(bankName, twoLettersBankName, client, secret, accountId):
         print(response.text)
 
     ## Lógica de paginação se passar de 500 (checar se tem page2... até a falha?)
-    ## Criptomoedas (eu poderia traçar uma API pra acompanhar? Ou iria me entegar?)
+    ## Criar um tracker de criptomoedas também
 
     #################### GENERATE ####################
 
